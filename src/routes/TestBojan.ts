@@ -9,7 +9,7 @@ import { paramMissingError } from '@shared/constants';
 const router = Router();
 
 router.get('/date-time', async (req: Request, res: Response) => {
-    console.log('Date time: ', JSON.stringify(new Date()))
+    console.log('Date time HEROKU_LIVE: ', JSON.stringify(new Date()))
 
     const response = {
         code: OK,
