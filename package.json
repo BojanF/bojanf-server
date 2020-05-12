@@ -24,12 +24,7 @@
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.3",
-    "ts-node": "^8.10.1",
-    "winston": "^3.2.1",
-    "typescript": "^3.8.3",
-    "tsconfig-paths": "^3.9.0",
-    "@types/node": "^13.13.5"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.0.0",
@@ -40,12 +35,17 @@
     "@types/jasmine": "^3.5.10",
     "@types/jsonfile": "^5.0.0",
     "@types/morgan": "^1.9.0",
+    "@types/node": "^13.13.5",
     "@types/supertest": "^2.0.9",
     "find": "^0.3.0",
     "fs-extra": "^9.0.0",
     "jasmine": "^3.5.0",
     "jsonfile": "^6.0.1",
+    "nodemon": "^2.0.3",
     "supertest": "^4.0.2",
-    "tslint": "^6.1.2"
+    "ts-node": "^8.10.1",
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^6.1.2",
+    "typescript": "^3.8.3"
   }
 }
