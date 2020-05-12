@@ -8,6 +8,16 @@ import { paramMissingError } from '@shared/constants';
 // Init shared
 const router = Router();
 
+router.get('/date-time', async (req: Request, res: Response) => {
+    console.log('Date time: ', JSON.stringify(new Date()))
+
+    const response = {
+        code: OK,
+        data: new Date()
+    }
+    return res.json(response);
+});
+
 router.post('/parser-test', async (req: Request, res: Response) => {
     console.log('Request: ', JSON.stringify(req.body));
     // const { user } = req.body;
