@@ -3,12 +3,16 @@ import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
 
-import express, { Request, Response, NextFunction } from 'express';
-import { BAD_REQUEST } from 'http-status-codes';
+import express, {NextFunction, Request, Response} from 'express';
+import {BAD_REQUEST} from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
+
+import swaggerUi from 'swagger-ui-express';
+import yaml from 'yamljs';
+const swaggerDocument = yaml.load('./public/swagger.yaml');
 
 
 // Init express
@@ -23,6 +27,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {

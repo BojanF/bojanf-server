@@ -1,0 +1,124 @@
+swagger: "2.0"
+info:
+  version: "0.9.1"
+  title: sendgrid API
+# during dev, should point to your local machine
+host: localhost:3000
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  '/api/test/parser-test':
+    x-swagger-router-controller: sendgrid
+    post:
+      operationId: parser-test
+      summary: "returns response from SendGrid"
+      parameters:
+        - in: body
+          name: amount params
+          schema:
+            $ref: "#/definitions/SendGridRequest"
+
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AmountsResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  '/api/test/date-time':
+    x-swagger-router-controller: sendgrid
+    get:
+      operationId: getTestCall
+      summary: "returns date time now"
+      responses:
+        "200":
+          description: Success. Cotnains data Date Now
+          schema:
+            $ref: "#/definitions/GraphsResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+definitions:
+  SendGridRequest:
+    type: object
+    required:
+      - date_from
+      - date_to
+    properties:
+      date_from:
+        type: string
+        format: 'yyyy-mm'
+        example: '2017-01'
+      date_to:
+        type: string
+        format: 'yyyy-mm'
+        example: '2018-12'
+      company_id:
+        type: integer
+      group_id:
+        type: integer
+      country:
+        example: 'DE'
+        type: string
+      directive:
+        example: 5
+        type: integer
+      expense_domain:
+        type: integer
+  SendGridResponse:
+    type: object
+    properties:
+      refund_potential:
+        type: number
+      overall_submitted:
+        type: number
+      submitted_refunded:
+        type: number
+      pending_submission:
+        type: number
+      pending_submission_reissued:
+        type: number
+      pending_approval:
+        type: number
+      pending_approval_reissued:
+        type: number
+      disqualified:
+        type: number
+      need_your_input:
+        type: number
+      need_your_input_count:
+        type: number
+      pending_reissue:
+        type: number
+      incorrect_charges:
+        type: number
+      rejected:
+        type: number
+      submitted_reissued:
+        type: number
+
+  ErrorResponse:
+    properties:
+      error:
+        type: string
+      details:
+        type: string
+
+
